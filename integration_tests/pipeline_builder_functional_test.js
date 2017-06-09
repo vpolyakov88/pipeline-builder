@@ -65,7 +65,7 @@ test.describe('Pipelin Builder JS functional test', function() {
             require("fs").writeFileSync("buffer.png", f);
             require("fs").unlinkSync("buffer.svg");
             var golden = require("fs").readFileSync("buffer.png"),
-                screenshot = require("fs").readFileSync('./'+wdlname+'.png');
+                screenshot = require("fs").readFileSync('./integration_tests/'+wdlname+'.png');
             var d = doneReading(golden, screenshot);
 			require("fs").unlinkSync("buffer.png");
             assert.equal(d<=5, true, 'image the same '+d);
