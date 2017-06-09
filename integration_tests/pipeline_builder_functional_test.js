@@ -11,6 +11,8 @@ var assert = require('assert'),
         password: accessKey
     });
 
+    });
+
 test.describe('Pipelin Builder JS functional test', function() {
     this.timeout(600000);
 
@@ -67,8 +69,8 @@ test.describe('Pipelin Builder JS functional test', function() {
             var golden = require("fs").readFileSync("buffer.png"),
                 screenshot = require("fs").readFileSync(wdlname+'.png');
             var d = doneReading(golden, screenshot);
-            assert.equal(d<=5, true, 'image the same '+d);
-            require("fs").unlinkSync("buffer.png");
+			require("fs").unlinkSync("buffer.png");
+            assert.equal(d<=5, true, 'image the same '+d);            
             });
         });
 
@@ -85,8 +87,8 @@ test.describe('Pipelin Builder JS functional test', function() {
             var golden = require("fs").readFileSync("buffer.png"),
                 screenshot = require("fs").readFileSync(wdlname+'.png');
             var d = doneReading(golden, screenshot);
-            assert.equal(d<=5, true, 'image the same '+d);
             require("fs").unlinkSync("buffer.png");
+			assert.equal(d<=5, true, 'image the same '+d);
         });
     });
 
@@ -103,8 +105,8 @@ test.describe('Pipelin Builder JS functional test', function() {
             var golden = require("fs").readFileSync("buffer.png"),
                 screenshot = require("fs").readFileSync(wdlname+'.png');
             var d = doneReading(golden, screenshot);
-            assert.equal(d<=5, true, 'image the same '+d);
             require("fs").unlinkSync("buffer.png");
+			assert.equal(d<=5, true, 'image the same '+d);            
         });
     });
 
@@ -121,8 +123,8 @@ test.describe('Pipelin Builder JS functional test', function() {
             var golden = require("fs").readFileSync("buffer.png"),
                 screenshot = require("fs").readFileSync(wdlname+'.png');
             var d = doneReading(golden, screenshot);
-            assert.equal(d<=5, true, 'image the same '+d);
-            require("fs").unlinkSync("buffer.png");
+			require("fs").unlinkSync("buffer.png");
+            assert.equal(d<=5, true, 'image the same '+d);            
         });
     });
 
@@ -139,8 +141,8 @@ test.describe('Pipelin Builder JS functional test', function() {
             var golden = require("fs").readFileSync("buffer.png"),
                 screenshot = require("fs").readFileSync(wdlname+'.png');
             var d = doneReading(golden, screenshot);
-            assert.equal(d<=5, true, 'image the same '+d);
             require("fs").unlinkSync("buffer.png");
+			assert.equal(d<=5, true, 'image the same '+d);            
         });
     });
 
@@ -157,8 +159,8 @@ test.describe('Pipelin Builder JS functional test', function() {
             var golden = require("fs").readFileSync("buffer.png"),
                 screenshot = require("fs").readFileSync(wdlname+'.png');
             var d = doneReading(golden, screenshot);
-            assert.equal(d<=5, true, 'image the same '+d);
             require("fs").unlinkSync("buffer.png");
+			assert.equal(d<=5, true, 'image the same '+d);
         });
     });
 
@@ -175,8 +177,9 @@ test.describe('Pipelin Builder JS functional test', function() {
             var golden = require("fs").readFileSync("buffer.png"),
                 screenshot = require("fs").readFileSync(wdlname+'.png');
             var d = doneReading(golden, screenshot);
+			require("fs").unlinkSync("buffer.png");
             assert.equal(d<=5, true, 'image the same '+d);
-            require("fs").unlinkSync("buffer.png");
+            
         });
     });
 });
