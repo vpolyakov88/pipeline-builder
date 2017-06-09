@@ -11,8 +11,6 @@ var assert = require('assert'),
         password: accessKey
     });
 
-    });
-
 test.describe('Pipelin Builder JS functional test', function() {
     this.timeout(600000);
 
