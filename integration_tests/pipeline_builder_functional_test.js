@@ -61,7 +61,7 @@ test.describe('Pipelin Builder JS functional test', function() {
         driver.wait(until.elementLocated(webdriver.By.xpath('//*[@class="build-ok"]')), 1000, 'Build failure');
         driver.executeScript('var svg = document.querySelector("svg").parentNode.innerHTML; return svg;').then(function (return_value) {
             require("fs").writeFileSync("buffer.svg", return_value);
-			console.log(return_value);
+			      console.log(return_value);
             var f = require('svg2png').sync(require("fs").readFileSync("buffer.svg"));
             require("fs").writeFileSync("buffer.png", f);
             require("fs").unlinkSync("buffer.svg");
@@ -73,112 +73,118 @@ test.describe('Pipelin Builder JS functional test', function() {
             });
         });
 
-    // test.it('GenotypeGVCFsScatterWf_170204.wdl', function() {
-    //     var wdlname = 'GenotypeGVCFsScatterWf_170204';
-    //     driver.get('http://pb.opensource.epam.com/?url=https://raw.githubusercontent.com/broadinstitute/wdl/develop/scripts/broad_dsde_workflows/'+wdlname+'.wdl');
-    //     driver.wait(until.elementLocated(webdriver.By.xpath('//*[@id="wdl"]')), 1000, 'Page wasn\'t loaded in time');
-    //     driver.wait(until.elementLocated(webdriver.By.xpath('//*[@class="build-ok"]')), 1000, 'Build failure');
-    //     driver.executeScript('var svg = document.querySelector("svg").parentNode.innerHTML; return svg;').then(function (return_value) {
-    //         require("fs").writeFileSync("buffer.svg", return_value);
-    //         var f = require('svg2png').sync(require("fs").readFileSync("buffer.svg"));
-    //         require("fs").writeFileSync("buffer.png", f);
-    //         require("fs").unlinkSync("buffer.svg");
-    //         var golden = require("fs").readFileSync("buffer.png"),
-    //             screenshot = require("fs").readFileSync(wdlname+'.png');
-    //         var d = doneReading(golden, screenshot);
-    //         require("fs").unlinkSync("buffer.png");
-		// 	assert.equal(d<=5, true, 'image the same '+d);
-    //     });
-    // });
-    //
-    // test.it('HaplotypeCallerGvcfScatterWf_170204.wdl', function() {
-    //     var wdlname = 'HaplotypeCallerGvcfScatterWf_170204';
-    //     driver.get('http://pb.opensource.epam.com/?url=https://raw.githubusercontent.com/broadinstitute/wdl/develop/scripts/broad_dsde_workflows/'+wdlname+'.wdl');
-    //     driver.wait(until.elementLocated(webdriver.By.xpath('//*[@id="wdl"]')), 1000, 'Page wasn\'t loaded in time');
-    //     driver.wait(until.elementLocated(webdriver.By.xpath('//*[@class="build-ok"]')), 1000, 'Build failure');
-    //     driver.executeScript('var svg = document.querySelector("svg").parentNode.innerHTML; return svg;').then(function (return_value) {
-    //         require("fs").writeFileSync("buffer.svg", return_value);
-    //         var f = require('svg2png').sync(require("fs").readFileSync("buffer.svg"));
-    //         require("fs").writeFileSync("buffer.png", f);
-    //         require("fs").unlinkSync("buffer.svg");
-    //         var golden = require("fs").readFileSync("buffer.png"),
-    //             screenshot = require("fs").readFileSync(wdlname+'.png');
-    //         var d = doneReading(golden, screenshot);
-    //         require("fs").unlinkSync("buffer.png");
-		// 	assert.equal(d<=5, true, 'image the same '+d);
-    //     });
-    // });
-    //
-    // test.it('JointDiscoveryWf_170305.wdl', function() {
-    //     var wdlname = 'JointDiscoveryWf_170305';
-    //     driver.get('http://pb.opensource.epam.com/?url=https://raw.githubusercontent.com/broadinstitute/wdl/develop/scripts/broad_dsde_workflows/'+wdlname+'.wdl');
-    //     driver.wait(until.elementLocated(webdriver.By.xpath('//*[@id="wdl"]')), 1000, 'Page wasn\'t loaded in time');
-    //     driver.wait(until.elementLocated(webdriver.By.xpath('//*[@class="build-ok"]')), 1000, 'Build failure');
-    //     driver.executeScript('var svg = document.querySelector("svg").parentNode.innerHTML; return svg;').then(function (return_value) {
-    //         require("fs").writeFileSync("buffer.svg", return_value);
-    //         var f = require('svg2png').sync(require("fs").readFileSync("buffer.svg"));
-    //         require("fs").writeFileSync("buffer.png", f);
-    //         require("fs").unlinkSync("buffer.svg");
-    //         var golden = require("fs").readFileSync("buffer.png"),
-    //             screenshot = require("fs").readFileSync(wdlname+'.png');
-    //         var d = doneReading(golden, screenshot);
-		// 	require("fs").unlinkSync("buffer.png");
-    //         assert.equal(d<=5, true, 'image the same '+d);
-    //     });
-    // });
-    //
-    // test.it('RevertBamToUnmappedRGBamsWf_170107.wdl', function() {
-    //     var wdlname = 'RevertBamToUnmappedRGBamsWf_170107';
-    //     driver.get('http://pb.opensource.epam.com/?url=https://raw.githubusercontent.com/broadinstitute/wdl/develop/scripts/broad_dsde_workflows/'+wdlname+'.wdl');
-    //     driver.wait(until.elementLocated(webdriver.By.xpath('//*[@id="wdl"]')), 1000, 'Page wasn\'t loaded in time');
-    //     driver.wait(until.elementLocated(webdriver.By.xpath('//*[@class="build-ok"]')), 1000, 'Build failure');
-    //     driver.executeScript('var svg = document.querySelector("svg").parentNode.innerHTML; return svg;').then(function (return_value) {
-    //         require("fs").writeFileSync("buffer.svg", return_value);
-    //         var f = require('svg2png').sync(require("fs").readFileSync("buffer.svg"));
-    //         require("fs").writeFileSync("buffer.png", f);
-    //         require("fs").unlinkSync("buffer.svg");
-    //         var golden = require("fs").readFileSync("buffer.png"),
-    //             screenshot = require("fs").readFileSync(wdlname+'.png');
-    //         var d = doneReading(golden, screenshot);
-    //         require("fs").unlinkSync("buffer.png");
-		// 	assert.equal(d<=5, true, 'image the same '+d);
-    //     });
-    // });
-    //
-    // test.it('ValidateBamsWf_170107.wdl', function() {
-    //     var wdlname = 'ValidateBamsWf_170107';
-    //     driver.get('http://pb.opensource.epam.com/?url=https://raw.githubusercontent.com/broadinstitute/wdl/develop/scripts/broad_dsde_workflows/'+wdlname+'.wdl');
-    //     driver.wait(until.elementLocated(webdriver.By.xpath('//*[@id="wdl"]')), 1000, 'Page wasn\'t loaded in time');
-    //     driver.wait(until.elementLocated(webdriver.By.xpath('//*[@class="build-ok"]')), 1000, 'Build failure');
-    //     driver.executeScript('var svg = document.querySelector("svg").parentNode.innerHTML; return svg;').then(function (return_value) {
-    //         require("fs").writeFileSync("buffer.svg", return_value);
-    //         var f = require('svg2png').sync(require("fs").readFileSync("buffer.svg"));
-    //         require("fs").writeFileSync("buffer.png", f);
-    //         require("fs").unlinkSync("buffer.svg");
-    //         var golden = require("fs").readFileSync("buffer.png"),
-    //             screenshot = require("fs").readFileSync(wdlname+'.png');
-    //         var d = doneReading(golden, screenshot);
-    //         require("fs").unlinkSync("buffer.png");
-		// 	assert.equal(d<=5, true, 'image the same '+d);
-    //     });
-    // });
-    //
-    // test.it('VariantRecalibrationWf_170305.wdl', function() {
-    //     var wdlname = 'VariantRecalibrationWf_170305';
-    //     driver.get('http://pb.opensource.epam.com/?url=https://raw.githubusercontent.com/broadinstitute/wdl/develop/scripts/broad_dsde_workflows/'+wdlname+'.wdl');
-    //     driver.wait(until.elementLocated(webdriver.By.xpath('//*[@id="wdl"]')), 1000, 'Page wasn\'t loaded in time');
-    //     driver.wait(until.elementLocated(webdriver.By.xpath('//*[@class="build-ok"]')), 1000, 'Build failure');
-    //     driver.executeScript('var svg = document.querySelector("svg").parentNode.innerHTML; return svg;').then(function (return_value) {
-    //         require("fs").writeFileSync("buffer.svg", return_value);
-    //         var f = require('svg2png').sync(require("fs").readFileSync("buffer.svg"));
-    //         require("fs").writeFileSync("buffer.png", f);
-    //         require("fs").unlinkSync("buffer.svg");
-    //         var golden = require("fs").readFileSync("buffer.png"),
-    //             screenshot = require("fs").readFileSync(wdlname+'.png');
-    //         var d = doneReading(golden, screenshot);
-		// 	require("fs").unlinkSync("buffer.png");
-    //         assert.equal(d<=5, true, 'image the same '+d);
-    //
-    //     });
-    // });
+    test.it('GenotypeGVCFsScatterWf_170204.wdl', function() {
+        var wdlname = 'GenotypeGVCFsScatterWf_170204';
+        driver.get('http://pb.opensource.epam.com/?url=https://raw.githubusercontent.com/broadinstitute/wdl/develop/scripts/broad_dsde_workflows/'+wdlname+'.wdl');
+        driver.wait(until.elementLocated(webdriver.By.xpath('//*[@id="wdl"]')), 1000, 'Page wasn\'t loaded in time');
+        driver.wait(until.elementLocated(webdriver.By.xpath('//*[@class="build-ok"]')), 1000, 'Build failure');
+        driver.executeScript('var svg = document.querySelector("svg").parentNode.innerHTML; return svg;').then(function (return_value) {
+            require("fs").writeFileSync("buffer.svg", return_value);
+            console.log(return_value);
+            var f = require('svg2png').sync(require("fs").readFileSync("buffer.svg"));
+            require("fs").writeFileSync("buffer.png", f);
+            require("fs").unlinkSync("buffer.svg");
+            var golden = require("fs").readFileSync("buffer.png"),
+                screenshot = require("fs").readFileSync('./integration_tests/'+wdlname+'.png');
+            var d = doneReading(golden, screenshot);
+            require("fs").unlinkSync("buffer.png");
+			assert.equal(d<=5, true, 'image the same '+d);
+        });
+    });
+
+    test.it('HaplotypeCallerGvcfScatterWf_170204.wdl', function() {
+        var wdlname = 'HaplotypeCallerGvcfScatterWf_170204';
+        driver.get('http://pb.opensource.epam.com/?url=https://raw.githubusercontent.com/broadinstitute/wdl/develop/scripts/broad_dsde_workflows/'+wdlname+'.wdl');
+        driver.wait(until.elementLocated(webdriver.By.xpath('//*[@id="wdl"]')), 1000, 'Page wasn\'t loaded in time');
+        driver.wait(until.elementLocated(webdriver.By.xpath('//*[@class="build-ok"]')), 1000, 'Build failure');
+        driver.executeScript('var svg = document.querySelector("svg").parentNode.innerHTML; return svg;').then(function (return_value) {
+            require("fs").writeFileSync("buffer.svg", return_value);
+            console.log(return_value);
+            var f = require('svg2png').sync(require("fs").readFileSync("buffer.svg"));
+            require("fs").writeFileSync("buffer.png", f);
+            require("fs").unlinkSync("buffer.svg");
+            var golden = require("fs").readFileSync("buffer.png"),
+                screenshot = require("fs").readFileSync('./integration_tests/'+wdlname+'.png');
+            var d = doneReading(golden, screenshot);
+            require("fs").unlinkSync("buffer.png");
+			assert.equal(d<=5, true, 'image the same '+d);
+        });
+    });
+
+    test.it('JointDiscoveryWf_170305.wdl', function() {
+        var wdlname = 'JointDiscoveryWf_170305';
+        driver.get('http://pb.opensource.epam.com/?url=https://raw.githubusercontent.com/broadinstitute/wdl/develop/scripts/broad_dsde_workflows/'+wdlname+'.wdl');
+        driver.wait(until.elementLocated(webdriver.By.xpath('//*[@id="wdl"]')), 1000, 'Page wasn\'t loaded in time');
+        driver.wait(until.elementLocated(webdriver.By.xpath('//*[@class="build-ok"]')), 1000, 'Build failure');
+        driver.executeScript('var svg = document.querySelector("svg").parentNode.innerHTML; return svg;').then(function (return_value) {
+            require("fs").writeFileSync("buffer.svg", return_value);
+            console.log(return_value);
+            var f = require('svg2png').sync(require("fs").readFileSync("buffer.svg"));
+            require("fs").writeFileSync("buffer.png", f);
+            require("fs").unlinkSync("buffer.svg");
+            var golden = require("fs").readFileSync("buffer.png"),
+                screenshot = require("fs").readFileSync('./integration_tests/'+wdlname+'.png');
+            var d = doneReading(golden, screenshot);
+			require("fs").unlinkSync("buffer.png");
+            assert.equal(d<=5, true, 'image the same '+d);
+        });
+    });
+
+    test.it('RevertBamToUnmappedRGBamsWf_170107.wdl', function() {
+        var wdlname = 'RevertBamToUnmappedRGBamsWf_170107';
+        driver.get('http://pb.opensource.epam.com/?url=https://raw.githubusercontent.com/broadinstitute/wdl/develop/scripts/broad_dsde_workflows/'+wdlname+'.wdl');
+        driver.wait(until.elementLocated(webdriver.By.xpath('//*[@id="wdl"]')), 1000, 'Page wasn\'t loaded in time');
+        driver.wait(until.elementLocated(webdriver.By.xpath('//*[@class="build-ok"]')), 1000, 'Build failure');
+        driver.executeScript('var svg = document.querySelector("svg").parentNode.innerHTML; return svg;').then(function (return_value) {
+            require("fs").writeFileSync("buffer.svg", return_value);
+            console.log(return_value);
+            var f = require('svg2png').sync(require("fs").readFileSync("buffer.svg"));
+            require("fs").writeFileSync("buffer.png", f);
+            require("fs").unlinkSync("buffer.svg");
+            var golden = require("fs").readFileSync("buffer.png"),
+                screenshot = require("fs").readFileSync('./integration_tests/'+wdlname+'.png');
+            var d = doneReading(golden, screenshot);
+            require("fs").unlinkSync("buffer.png");
+			assert.equal(d<=5, true, 'image the same '+d);
+        });
+    });
+
+    test.it('ValidateBamsWf_170107.wdl', function() {
+        var wdlname = 'ValidateBamsWf_170107';
+        driver.get('http://pb.opensource.epam.com/?url=https://raw.githubusercontent.com/broadinstitute/wdl/develop/scripts/broad_dsde_workflows/'+wdlname+'.wdl');
+        driver.wait(until.elementLocated(webdriver.By.xpath('//*[@id="wdl"]')), 1000, 'Page wasn\'t loaded in time');
+        driver.wait(until.elementLocated(webdriver.By.xpath('//*[@class="build-ok"]')), 1000, 'Build failure');
+        driver.executeScript('var svg = document.querySelector("svg").parentNode.innerHTML; return svg;').then(function (return_value) {
+            require("fs").writeFileSync("buffer.svg", return_value);
+            console.log(return_value);
+            var f = require('svg2png').sync(require("fs").readFileSync("buffer.svg"));
+            require("fs").writeFileSync("buffer.png", f);
+            require("fs").unlinkSync("buffer.svg");
+            var golden = require("fs").readFileSync("buffer.png"),
+                screenshot = require("fs").readFileSync('./integration_tests/'+wdlname+'.png');
+            var d = doneReading(golden, screenshot);
+            require("fs").unlinkSync("buffer.png");
+			assert.equal(d<=5, true, 'image the same '+d);
+        });
+    });
+
+    test.it('VariantRecalibrationWf_170305.wdl', function() {
+        var wdlname = 'VariantRecalibrationWf_170305';
+        driver.get('http://pb.opensource.epam.com/?url=https://raw.githubusercontent.com/broadinstitute/wdl/develop/scripts/broad_dsde_workflows/'+wdlname+'.wdl');
+        driver.wait(until.elementLocated(webdriver.By.xpath('//*[@id="wdl"]')), 1000, 'Page wasn\'t loaded in time');
+        driver.wait(until.elementLocated(webdriver.By.xpath('//*[@class="build-ok"]')), 1000, 'Build failure');
+        driver.executeScript('var svg = document.querySelector("svg").parentNode.innerHTML; return svg;').then(function (return_value) {
+            require("fs").writeFileSync("buffer.svg", return_value);
+            console.log(return_value);
+            var f = require('svg2png').sync(require("fs").readFileSync("buffer.svg"));
+            require("fs").writeFileSync("buffer.png", f);
+            require("fs").unlinkSync("buffer.svg");
+            var golden = require("fs").readFileSync("buffer.png"),
+                screenshot = require("fs").readFileSync('./integration_tests/'+wdlname+'.png');
+            var d = doneReading(golden, screenshot);
+			require("fs").unlinkSync("buffer.png");
+            assert.equal(d<=5, true, 'image the same '+d);
+
+        });
+    });
 });
