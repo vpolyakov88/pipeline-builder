@@ -33,7 +33,7 @@ test.describe('Pipelin Builder JS functional test', function () {
       'version': version,
       'username': username,
       'accessKey': accessKey,
-      'build': build,
+      'build': build
     }).usingServer(server).build();
     driver.getSession().then(function (sessionid) {
       driver.sessionID = sessionid.id_;
