@@ -32,7 +32,7 @@
   "scripts": {
     "test": "gulp test",
     "build": "gulp",
-	"test": "mocha"
+	"integration_test": "mocha"
   },
   "keywords": [
     "workflow",
@@ -107,6 +107,7 @@
   "directories": {
     "doc": "docs",
     "example": "examples",
-    "test": "test"
+    "test": "test",
+	"integration_test": "integration_tests"
   }
 }
