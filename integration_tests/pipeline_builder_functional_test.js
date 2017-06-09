@@ -21,6 +21,7 @@ test.describe('Pipelin Builder JS functional test', function () {
       version = '43.0',
       platform = 'Windows 7',
       screenResolution = '1920x1080',
+      build = process.env.TRAVIS_JOB_NUMBER;
       server = "http://" + username + ":" + accessKey +
         "@ondemand.saucelabs.com:80/wd/hub";
 
@@ -31,7 +32,8 @@ test.describe('Pipelin Builder JS functional test', function () {
       'platform': platform,
       'version': version,
       'username': username,
-      'accessKey': accessKey
+      'accessKey': accessKey,
+      'build': build,
     }).usingServer(server).build();
     driver.getSession().then(function (sessionid) {
       driver.sessionID = sessionid.id_;
@@ -43,6 +45,7 @@ test.describe('Pipelin Builder JS functional test', function () {
     var title = this.currentTest.title,
       passed = (this.currentTest.state === 'passed') ? true : false;
     driver.quit();
+    saucelabs.tagName.
     saucelabs.updateJob(driver.sessionID, {
       name: title,
       passed: passed
