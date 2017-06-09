@@ -6,5 +6,4 @@ dist: trusty
 install: 
     - yarn global add gulp-cli
     - yarn install
-script: gulp
-after_script: gulp test:coveralls, npm integration_test
+script: npm integration_test
