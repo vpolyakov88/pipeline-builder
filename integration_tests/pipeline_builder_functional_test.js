@@ -57,8 +57,8 @@ test.describe('Pipelin Builder JS functional test', function() {
     test.it('ConvertPairedFastQToUnmappedBamWf_170107.wdl', function () {
         var wdlname = 'ConvertPairedFastQToUnmappedBamWf_170107';
         driver.get('http://pb.opensource.epam.com/?url=https://raw.githubusercontent.com/broadinstitute/wdl/develop/scripts/broad_dsde_workflows/'+wdlname+'.wdl');
-        driver.wait(until.elementLocated(webdriver.By.xpath('//*[@id="wdl"]')), 1000, 'Page wasn\'t loaded in time');
-        driver.wait(until.elementLocated(webdriver.By.xpath('//*[@class="build-ok"]')), 1000, 'Build failure');
+        driver.wait(until.elementLocated(webdriver.By.xpath('//*[@id="wdl"]')), 10000, 'Page wasn\'t loaded in time');
+        driver.wait(until.elementLocated(webdriver.By.xpath('//*[@class="build-ok"]')), 10000, 'Build failure');
         driver.executeScript('var svg = document.querySelector("svg").parentNode.innerHTML; return svg;').then(function (return_value) {
             require("fs").writeFileSync("buffer.svg", return_value);
 			      console.log(return_value);
@@ -76,8 +76,8 @@ test.describe('Pipelin Builder JS functional test', function() {
     test.it('GenotypeGVCFsScatterWf_170204.wdl', function() {
         var wdlname = 'GenotypeGVCFsScatterWf_170204';
         driver.get('http://pb.opensource.epam.com/?url=https://raw.githubusercontent.com/broadinstitute/wdl/develop/scripts/broad_dsde_workflows/'+wdlname+'.wdl');
-        driver.wait(until.elementLocated(webdriver.By.xpath('//*[@id="wdl"]')), 1000, 'Page wasn\'t loaded in time');
-        driver.wait(until.elementLocated(webdriver.By.xpath('//*[@class="build-ok"]')), 1000, 'Build failure');
+        driver.wait(until.elementLocated(webdriver.By.xpath('//*[@id="wdl"]')), 10000, 'Page wasn\'t loaded in time');
+        driver.wait(until.elementLocated(webdriver.By.xpath('//*[@class="build-ok"]')), 10000, 'Build failure');
         driver.executeScript('var svg = document.querySelector("svg").parentNode.innerHTML; return svg;').then(function (return_value) {
             require("fs").writeFileSync("buffer.svg", return_value);
             console.log(return_value);
@@ -95,8 +95,8 @@ test.describe('Pipelin Builder JS functional test', function() {
     test.it('HaplotypeCallerGvcfScatterWf_170204.wdl', function() {
         var wdlname = 'HaplotypeCallerGvcfScatterWf_170204';
         driver.get('http://pb.opensource.epam.com/?url=https://raw.githubusercontent.com/broadinstitute/wdl/develop/scripts/broad_dsde_workflows/'+wdlname+'.wdl');
-        driver.wait(until.elementLocated(webdriver.By.xpath('//*[@id="wdl"]')), 1000, 'Page wasn\'t loaded in time');
-        driver.wait(until.elementLocated(webdriver.By.xpath('//*[@class="build-ok"]')), 1000, 'Build failure');
+        driver.wait(until.elementLocated(webdriver.By.xpath('//*[@id="wdl"]')), 10000, 'Page wasn\'t loaded in time');
+        driver.wait(until.elementLocated(webdriver.By.xpath('//*[@class="build-ok"]')), 10000, 'Build failure');
         driver.executeScript('var svg = document.querySelector("svg").parentNode.innerHTML; return svg;').then(function (return_value) {
             require("fs").writeFileSync("buffer.svg", return_value);
             console.log(return_value);
@@ -114,8 +114,8 @@ test.describe('Pipelin Builder JS functional test', function() {
     test.it('JointDiscoveryWf_170305.wdl', function() {
         var wdlname = 'JointDiscoveryWf_170305';
         driver.get('http://pb.opensource.epam.com/?url=https://raw.githubusercontent.com/broadinstitute/wdl/develop/scripts/broad_dsde_workflows/'+wdlname+'.wdl');
-        driver.wait(until.elementLocated(webdriver.By.xpath('//*[@id="wdl"]')), 1000, 'Page wasn\'t loaded in time');
-        driver.wait(until.elementLocated(webdriver.By.xpath('//*[@class="build-ok"]')), 1000, 'Build failure');
+        driver.wait(until.elementLocated(webdriver.By.xpath('//*[@id="wdl"]')), 10000, 'Page wasn\'t loaded in time');
+        driver.wait(until.elementLocated(webdriver.By.xpath('//*[@class="build-ok"]')), 10000, 'Build failure');
         driver.executeScript('var svg = document.querySelector("svg").parentNode.innerHTML; return svg;').then(function (return_value) {
             require("fs").writeFileSync("buffer.svg", return_value);
             console.log(return_value);
@@ -133,8 +133,8 @@ test.describe('Pipelin Builder JS functional test', function() {
     test.it('RevertBamToUnmappedRGBamsWf_170107.wdl', function() {
         var wdlname = 'RevertBamToUnmappedRGBamsWf_170107';
         driver.get('http://pb.opensource.epam.com/?url=https://raw.githubusercontent.com/broadinstitute/wdl/develop/scripts/broad_dsde_workflows/'+wdlname+'.wdl');
-        driver.wait(until.elementLocated(webdriver.By.xpath('//*[@id="wdl"]')), 1000, 'Page wasn\'t loaded in time');
-        driver.wait(until.elementLocated(webdriver.By.xpath('//*[@class="build-ok"]')), 1000, 'Build failure');
+        driver.wait(until.elementLocated(webdriver.By.xpath('//*[@id="wdl"]')), 10000, 'Page wasn\'t loaded in time');
+        driver.wait(until.elementLocated(webdriver.By.xpath('//*[@class="build-ok"]')), 10000, 'Build failure');
         driver.executeScript('var svg = document.querySelector("svg").parentNode.innerHTML; return svg;').then(function (return_value) {
             require("fs").writeFileSync("buffer.svg", return_value);
             console.log(return_value);
@@ -152,8 +152,8 @@ test.describe('Pipelin Builder JS functional test', function() {
     test.it('ValidateBamsWf_170107.wdl', function() {
         var wdlname = 'ValidateBamsWf_170107';
         driver.get('http://pb.opensource.epam.com/?url=https://raw.githubusercontent.com/broadinstitute/wdl/develop/scripts/broad_dsde_workflows/'+wdlname+'.wdl');
-        driver.wait(until.elementLocated(webdriver.By.xpath('//*[@id="wdl"]')), 1000, 'Page wasn\'t loaded in time');
-        driver.wait(until.elementLocated(webdriver.By.xpath('//*[@class="build-ok"]')), 1000, 'Build failure');
+        driver.wait(until.elementLocated(webdriver.By.xpath('//*[@id="wdl"]')), 10000, 'Page wasn\'t loaded in time');
+        driver.wait(until.elementLocated(webdriver.By.xpath('//*[@class="build-ok"]')), 10000, 'Build failure');
         driver.executeScript('var svg = document.querySelector("svg").parentNode.innerHTML; return svg;').then(function (return_value) {
             require("fs").writeFileSync("buffer.svg", return_value);
             console.log(return_value);
@@ -171,8 +171,8 @@ test.describe('Pipelin Builder JS functional test', function() {
     test.it('VariantRecalibrationWf_170305.wdl', function() {
         var wdlname = 'VariantRecalibrationWf_170305';
         driver.get('http://pb.opensource.epam.com/?url=https://raw.githubusercontent.com/broadinstitute/wdl/develop/scripts/broad_dsde_workflows/'+wdlname+'.wdl');
-        driver.wait(until.elementLocated(webdriver.By.xpath('//*[@id="wdl"]')), 1000, 'Page wasn\'t loaded in time');
-        driver.wait(until.elementLocated(webdriver.By.xpath('//*[@class="build-ok"]')), 1000, 'Build failure');
+        driver.wait(until.elementLocated(webdriver.By.xpath('//*[@id="wdl"]')), 10000, 'Page wasn\'t loaded in time');
+        driver.wait(until.elementLocated(webdriver.By.xpath('//*[@class="build-ok"]')), 10000, 'Build failure');
         driver.executeScript('var svg = document.querySelector("svg").parentNode.innerHTML; return svg;').then(function (return_value) {
             require("fs").writeFileSync("buffer.svg", return_value);
             console.log(return_value);
