@@ -66,7 +66,6 @@ test.describe('Pipelin Builder JS functional test', function () {
       require("fs").unlinkSync("buffer.svg");
       var golden = require("fs").readFileSync("buffer.png"),
         screenshot = require("fs").readFileSync('./integration_tests/' + wdlname + '.png');
-      var test = new Buffer(golden).toString('base64');
       console.log(test);
       var d = doneReading(golden, screenshot);
       require("fs").unlinkSync("buffer.png");
@@ -87,7 +86,6 @@ test.describe('Pipelin Builder JS functional test', function () {
       var golden = require("fs").readFileSync("buffer.png"),
         screenshot = require("fs").readFileSync('./integration_tests/' + wdlname + '.png');
       screenshot = require("fs").readFileSync('./integration_tests/' + wdlname + '.png');
-      var test = new Buffer(golden).toString('base64');
       console.log(test);
       var d = doneReading(golden, screenshot);
       require("fs").unlinkSync("buffer.png");
@@ -108,7 +106,6 @@ test.describe('Pipelin Builder JS functional test', function () {
       var golden = require("fs").readFileSync("buffer.png"),
         screenshot = require("fs").readFileSync('./integration_tests/' + wdlname + '.png');
       screenshot = require("fs").readFileSync('./integration_tests/' + wdlname + '.png');
-      var test = new Buffer(golden).toString('base64');
       console.log(test);
       var d = doneReading(golden, screenshot);
       require("fs").unlinkSync("buffer.png");
@@ -129,7 +126,6 @@ test.describe('Pipelin Builder JS functional test', function () {
       var golden = require("fs").readFileSync("buffer.png"),
         screenshot = require("fs").readFileSync('./integration_tests/' + wdlname + '.png');
       screenshot = require("fs").readFileSync('./integration_tests/' + wdlname + '.png');
-      var test = new Buffer(golden).toString('base64');
       console.log(test);
       var d = doneReading(golden, screenshot);
       require("fs").unlinkSync("buffer.png");
@@ -150,7 +146,6 @@ test.describe('Pipelin Builder JS functional test', function () {
       var golden = require("fs").readFileSync("buffer.png"),
         screenshot = require("fs").readFileSync('./integration_tests/' + wdlname + '.png');
       screenshot = require("fs").readFileSync('./integration_tests/' + wdlname + '.png');
-      var test = new Buffer(golden).toString('base64');
       console.log(test);
       var d = doneReading(golden, screenshot);
       require("fs").unlinkSync("buffer.png");
@@ -170,7 +165,6 @@ test.describe('Pipelin Builder JS functional test', function () {
       require("fs").unlinkSync("buffer.svg");
       var golden = require("fs").readFileSync("buffer.png"),
         screenshot = require("fs").readFileSync('./integration_tests/' + wdlname + '.png');
-      var test = new Buffer(golden).toString('base64');
       console.log(test);
       var d = doneReading(golden, screenshot);
       require("fs").unlinkSync("buffer.png");
@@ -191,7 +185,6 @@ test.describe('Pipelin Builder JS functional test', function () {
       var golden = require("fs").readFileSync("buffer.png"),
         screenshot = require("fs").readFileSync('./integration_tests/' + wdlname + '.png');
       screenshot = require("fs").readFileSync('./integration_tests/' + wdlname + '.png');
-      var test = new Buffer(golden).toString('base64');
       console.log(test);
       var d = doneReading(golden, screenshot);
       require("fs").unlinkSync("buffer.png");
