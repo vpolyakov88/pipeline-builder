@@ -61,6 +61,7 @@ test.describe('Pipelin Builder JS functional test', function() {
         driver.wait(until.elementLocated(webdriver.By.xpath('//*[@class="build-ok"]')), 1000, 'Build failure');
         driver.executeScript('var svg = document.querySelector("svg").parentNode.innerHTML; return svg;').then(function (return_value) {
             require("fs").writeFileSync("buffer.svg", return_value);
+			console.log(return_value);
             var f = require('svg2png').sync(require("fs").readFileSync("buffer.svg"));
             require("fs").writeFileSync("buffer.png", f);
             require("fs").unlinkSync("buffer.svg");
