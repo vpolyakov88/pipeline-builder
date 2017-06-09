@@ -30,9 +30,9 @@
   },
   "homepage": "https://github.com/epam/pipeline-builder#readme",
   "scripts": {
-    "test": "gulp test",
+    "test": "node_modules/.bin/mocha -w ./integration_tests/pipeline_builder_functional_test.js",
     "build": "gulp",
-	"integration_test": "mocha"
+	"integrationtest": "node_modules/.bin/mocha -w"
   },
   "keywords": [
     "workflow",
