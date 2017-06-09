@@ -108,6 +108,11 @@ gulp.task('test:cover-hook', () =>
     .pipe(istanbul.hookRequire()),
 );
 
+gulp.task('integration_test', () =>
+  gulp.src('integration_tests/pipeline_builder_functional_test.js', { read: false })
+    .pipe(mocha({ compilers: 'js:mocha' })),
+);
+
 const jsdocConfig = {
   source: {
   },
