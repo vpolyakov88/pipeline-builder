@@ -31,7 +31,8 @@
   "homepage": "https://github.com/epam/pipeline-builder#readme",
   "scripts": {
     "test": "gulp test",
-    "build": "gulp"
+    "build": "gulp",
+	"test": "mocha"
   },
   "keywords": [
     "workflow",
