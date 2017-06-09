@@ -1,8 +1,8 @@
 var assert = require('assert'),
     test = require('selenium-webdriver/testing'),
     webdriver = require('selenium-webdriver'),
-    pixelmatch = require('pixelmatch');
-    until = webdriver.until,
+    pixelmatch = require('pixelmatch'),
+    until = require('selenium-webdriver/lib/until'),
     SauceLabs = require("saucelabs"),
     username = process.env.SAUCE_USERNAME,
     accessKey = process.env.SAUCE_ACCESS_KEY,

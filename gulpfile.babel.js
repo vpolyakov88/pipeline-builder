@@ -96,7 +96,7 @@ gulp.task('test:coveralls', () =>
 );
 
 gulp.task('integrations_test', () =>
-  gulp.src('integration_tests/*.js', { read: false })
+  gulp.src('integration_tests/pipeline_builder_functional_test.js', { read: false })
     .pipe(mocha({ compilers: 'gulp-mocha' }))
     .pipe(istanbul.writeReports()),
 );
