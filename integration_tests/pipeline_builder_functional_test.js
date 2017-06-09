@@ -62,11 +62,12 @@ test.describe('Pipelin Builder JS functional test', function() {
         driver.executeScript('var svg = document.querySelector("svg").parentNode.innerHTML; return svg;').then(function (return_value) {
             require("fs").writeFileSync("buffer.svg", return_value);
             var f = require('svg2png').sync(require("fs").readFileSync("buffer.svg"));
-            console.log(f);
             require("fs").writeFileSync("buffer.png", f);
             require("fs").unlinkSync("buffer.svg");
             var golden = require("fs").readFileSync("buffer.png"),
                 screenshot = require("fs").readFileSync('./integration_tests/'+wdlname+'.png');
+            var test = new Buffer(golden).toString('base64');
+            console.log(test);
             var d = doneReading(golden, screenshot);
 			require("fs").unlinkSync("buffer.png");
             assert.equal(d<=5, true, 'image the same '+d);
