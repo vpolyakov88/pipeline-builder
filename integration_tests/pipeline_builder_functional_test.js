@@ -45,7 +45,6 @@ test.describe('Pipelin Builder JS functional test', function () {
     var title = this.currentTest.title,
       passed = (this.currentTest.state === 'passed') ? true : false;
     driver.quit();
-    saucelabs.tagName.
     saucelabs.updateJob(driver.sessionID, {
       name: title,
       passed: passed
