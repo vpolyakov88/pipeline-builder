@@ -70,7 +70,7 @@ test.describe('Pipelin Builder JS functional test', function () {
       console.log(test);
       var d = doneReading(golden, screenshot);
       require("fs").unlinkSync("buffer.png");
-      assert.equal(d <= 5, true, 'image the same ' + d);
+      assert.equal(d <= 10, true, 'image the same ' + d);
     });
   });
 
@@ -81,7 +81,6 @@ test.describe('Pipelin Builder JS functional test', function () {
     driver.wait(until.elementLocated(webdriver.By.xpath('//*[@class="build-ok"]')), 10000, 'Build failure');
     driver.executeScript('var svg = document.querySelector("svg").parentNode.innerHTML; return svg;').then(function (return_value) {
       require("fs").writeFileSync("buffer.svg", return_value);
-      console.log(return_value);
       var f = require('svg2png').sync(require("fs").readFileSync("buffer.svg"));
       require("fs").writeFileSync("buffer.png", f);
       require("fs").unlinkSync("buffer.svg");
@@ -92,7 +91,7 @@ test.describe('Pipelin Builder JS functional test', function () {
       console.log(test);
       var d = doneReading(golden, screenshot);
       require("fs").unlinkSync("buffer.png");
-      assert.equal(d <= 5, true, 'image the same ' + d);
+      assert.equal(d <= 10, true, 'image the same ' + d);
     });
   });
 
@@ -103,7 +102,6 @@ test.describe('Pipelin Builder JS functional test', function () {
     driver.wait(until.elementLocated(webdriver.By.xpath('//*[@class="build-ok"]')), 10000, 'Build failure');
     driver.executeScript('var svg = document.querySelector("svg").parentNode.innerHTML; return svg;').then(function (return_value) {
       require("fs").writeFileSync("buffer.svg", return_value);
-      console.log(return_value);
       var f = require('svg2png').sync(require("fs").readFileSync("buffer.svg"));
       require("fs").writeFileSync("buffer.png", f);
       require("fs").unlinkSync("buffer.svg");
@@ -114,7 +112,7 @@ test.describe('Pipelin Builder JS functional test', function () {
       console.log(test);
       var d = doneReading(golden, screenshot);
       require("fs").unlinkSync("buffer.png");
-      assert.equal(d <= 5, true, 'image the same ' + d);
+      assert.equal(d <= 10, true, 'image the same ' + d);
     });
   });
 
@@ -125,7 +123,6 @@ test.describe('Pipelin Builder JS functional test', function () {
     driver.wait(until.elementLocated(webdriver.By.xpath('//*[@class="build-ok"]')), 10000, 'Build failure');
     driver.executeScript('var svg = document.querySelector("svg").parentNode.innerHTML; return svg;').then(function (return_value) {
       require("fs").writeFileSync("buffer.svg", return_value);
-      console.log(return_value);
       var f = require('svg2png').sync(require("fs").readFileSync("buffer.svg"));
       require("fs").writeFileSync("buffer.png", f);
       require("fs").unlinkSync("buffer.svg");
@@ -136,7 +133,7 @@ test.describe('Pipelin Builder JS functional test', function () {
       console.log(test);
       var d = doneReading(golden, screenshot);
       require("fs").unlinkSync("buffer.png");
-      assert.equal(d <= 5, true, 'image the same ' + d);
+      assert.equal(d <= 10, true, 'image the same ' + d);
     });
   });
 
@@ -147,7 +144,6 @@ test.describe('Pipelin Builder JS functional test', function () {
     driver.wait(until.elementLocated(webdriver.By.xpath('//*[@class="build-ok"]')), 10000, 'Build failure');
     driver.executeScript('var svg = document.querySelector("svg").parentNode.innerHTML; return svg;').then(function (return_value) {
       require("fs").writeFileSync("buffer.svg", return_value);
-      console.log(return_value);
       var f = require('svg2png').sync(require("fs").readFileSync("buffer.svg"));
       require("fs").writeFileSync("buffer.png", f);
       require("fs").unlinkSync("buffer.svg");
@@ -158,7 +154,7 @@ test.describe('Pipelin Builder JS functional test', function () {
       console.log(test);
       var d = doneReading(golden, screenshot);
       require("fs").unlinkSync("buffer.png");
-      assert.equal(d <= 5, true, 'image the same ' + d);
+      assert.equal(d <= 10, true, 'image the same ' + d);
     });
   });
 
@@ -169,15 +165,16 @@ test.describe('Pipelin Builder JS functional test', function () {
     driver.wait(until.elementLocated(webdriver.By.xpath('//*[@class="build-ok"]')), 10000, 'Build failure');
     driver.executeScript('var svg = document.querySelector("svg").parentNode.innerHTML; return svg;').then(function (return_value) {
       require("fs").writeFileSync("buffer.svg", return_value);
-      console.log(return_value);
       var f = require('svg2png').sync(require("fs").readFileSync("buffer.svg"));
       require("fs").writeFileSync("buffer.png", f);
       require("fs").unlinkSync("buffer.svg");
       var golden = require("fs").readFileSync("buffer.png"),
         screenshot = require("fs").readFileSync('./integration_tests/' + wdlname + '.png');
+      var test = new Buffer(golden).toString('base64');
+      console.log(test);
       var d = doneReading(golden, screenshot);
       require("fs").unlinkSync("buffer.png");
-      assert.equal(d <= 5, true, 'image the same ' + d);
+      assert.equal(d <= 10, true, 'image the same ' + d);
     });
   });
 
@@ -188,7 +185,6 @@ test.describe('Pipelin Builder JS functional test', function () {
     driver.wait(until.elementLocated(webdriver.By.xpath('//*[@class="build-ok"]')), 10000, 'Build failure');
     driver.executeScript('var svg = document.querySelector("svg").parentNode.innerHTML; return svg;').then(function (return_value) {
       require("fs").writeFileSync("buffer.svg", return_value);
-      console.log(return_value);
       var f = require('svg2png').sync(require("fs").readFileSync("buffer.svg"));
       require("fs").writeFileSync("buffer.png", f);
       require("fs").unlinkSync("buffer.svg");
@@ -199,7 +195,7 @@ test.describe('Pipelin Builder JS functional test', function () {
       console.log(test);
       var d = doneReading(golden, screenshot);
       require("fs").unlinkSync("buffer.png");
-      assert.equal(d <= 5, true, 'image the same ' + d);
+      assert.equal(d <= 10, true, 'image the same ' + d);
     });
   });
 });
