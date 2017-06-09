@@ -7,4 +7,4 @@ install:
     - yarn global add gulp-cli
     - yarn install
 script: gulp
-after_script: gulp test:coveralls
+after_script: gulp test:coveralls, npm integration_test
