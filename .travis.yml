@@ -1,4 +1,4 @@
-env:    
+env:
 language: node_js
 node_js: "6"
 os: linux
@@ -6,4 +6,5 @@ dist: trusty
 install: 
     - yarn global add gulp-cli
     - yarn install
-script: cd ./integration_tests/ && mocha pipeline_builder_functional_test.js
+script: gulp
+after_script: gulp test:coveralls

@@ -90,6 +90,11 @@ gulp.task('test:cover', ['clean:cover', 'test:cover-hook'], () =>
     .pipe(istanbul.writeReports()),
 );
 
+gulp.task('integrations tests', () =>
+  gulp.src('integration_tests/pipeline_builder_functional_test.js', { read: false })
+    .pipe(mocha({ compilers: 'js:babel-core/register' })),
+);
+
 gulp.task('test:coveralls', () =>
   gulp.src('coverage/**/lcov.info')
     .pipe(coveralls()),
