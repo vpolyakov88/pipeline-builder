@@ -20,9 +20,9 @@ test.describe('Pipelin Builder JS functional test', function () {
     var browser = 'chrome',
       version = '43.0',
       platform = 'Windows 7',
-      screenResolution = '1920x1080';
-    server = "http://" + username + ":" + accessKey +
-      "@ondemand.saucelabs.com:80/wd/hub";
+      screenResolution = '1920x1080',
+      server = "http://" + username + ":" + accessKey +
+        "@ondemand.saucelabs.com:80/wd/hub";
 
 
     driver = new webdriver.Builder().withCapabilities({
