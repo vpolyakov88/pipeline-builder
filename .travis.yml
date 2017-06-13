@@ -43,5 +43,6 @@ deploy:
       on:
           branch: master
 after_deploy:
-    - "curl \"http://$JENKINS_SRV/job/pipeline-wdl-builder-$TRAVIS_BRANCH/build?token=$JENKINS_SECRET_TOKEN\""
+    "curl \"http://$JENKINS_SRV/job/pipeline-wdl-builder-$TRAVIS_BRANCH/build?token=$JENKINS_SECRET_TOKEN\""
     script: gulp integration_test
+	
