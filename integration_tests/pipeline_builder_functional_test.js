@@ -46,7 +46,7 @@ test.describe('Pipelin Builder JS functional test', function () {
     saucelabs.updateJob(driver.sessionID, {
       name: title,
       passed: passed,
-      build: process.env.TRAVIS_BUILD_NUMBER
+      build: 'Build #' + process.env.TRAVIS_BUILD_NUMBER + ', ' + process.env.TRAVIS_COMMIT_MESSAGE
     }, done);
   });
 
