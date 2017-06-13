@@ -67,7 +67,6 @@ test.describe('Pipelin Builder JS functional test', function () {
       require('fs').unlinkSync("buffer.svg");
       var golden = require('fs').readFileSync("buffer.png"),
         screenshot = require('fs').readFileSync('./integration_tests/' + wdlname + '.png');
-      console.log(test);
       var d = doneReading(golden, screenshot);
       require('fs').unlinkSync("buffer.png");
       assert.equal(d <= 10, true, 'image the same ' + d);
@@ -86,7 +85,6 @@ test.describe('Pipelin Builder JS functional test', function () {
       require('fs').unlinkSync("buffer.svg");
       var golden = require('fs').readFileSync("buffer.png"),
         screenshot = require('fs').readFileSync('./integration_tests/' + wdlname + '.png');
-      console.log(test);
       var d = doneReading(golden, screenshot);
       require('fs').unlinkSync("buffer.png");
       assert.equal(d <= 10, true, 'image the same ' + d);
@@ -105,7 +103,6 @@ test.describe('Pipelin Builder JS functional test', function () {
       require('fs').unlinkSync("buffer.svg");
       var golden = require('fs').readFileSync("buffer.png"),
         screenshot = require('fs').readFileSync('./integration_tests/' + wdlname + '.png');
-      console.log(test);
       var d = doneReading(golden, screenshot);
       require('fs').unlinkSync("buffer.png");
       assert.equal(d <= 10, true, 'image the same ' + d);
@@ -124,7 +121,6 @@ test.describe('Pipelin Builder JS functional test', function () {
       require('fs').unlinkSync("buffer.svg");
       var golden = require('fs').readFileSync("buffer.png"),
         screenshot = require('fs').readFileSync('./integration_tests/' + wdlname + '.png');
-      console.log(test);
       var d = doneReading(golden, screenshot);
       require('fs').unlinkSync("buffer.png");
       assert.equal(d <= 10, true, 'image the same ' + d);
@@ -143,7 +139,6 @@ test.describe('Pipelin Builder JS functional test', function () {
       require('fs').unlinkSync("buffer.svg");
       var golden = require('fs').readFileSync("buffer.png"),
         screenshot = require('fs').readFileSync('./integration_tests/' + wdlname + '.png');
-      console.log(test);
       var d = doneReading(golden, screenshot);
       require('fs').unlinkSync("buffer.png");
       assert.equal(d <= 10, true, 'image the same ' + d);
@@ -162,7 +157,6 @@ test.describe('Pipelin Builder JS functional test', function () {
       require('fs').unlinkSync("buffer.svg");
       var golden = require('fs').readFileSync("buffer.png"),
         screenshot = require('fs').readFileSync('./integration_tests/' + wdlname + '.png');
-      console.log(test);
       var d = doneReading(golden, screenshot);
       require('fs').unlinkSync("buffer.png");
       assert.equal(d <= 10, true, 'image the same ' + d);
@@ -181,7 +175,6 @@ test.describe('Pipelin Builder JS functional test', function () {
       require('fs').unlinkSync("buffer.svg");
       var golden = require('fs').readFileSync("buffer.png"),
         screenshot = require('fs').readFileSync('./integration_tests/' + wdlname + '.png');
-      console.log(test);
       var d = doneReading(golden, screenshot);
       require('fs').unlinkSync("buffer.png");
       assert.equal(d <= 10, true, 'image the same ' + d);
