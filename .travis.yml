@@ -18,7 +18,7 @@ dist: trusty
 install: 
     - yarn global add gulp-cli
     - yarn install
-script: gulp integration_test
+script: gulp integrations_test
 #gulp
 #after_script: gulp test:coveralls
 #before_deploy:
@@ -45,4 +45,4 @@ script: gulp integration_test
 #          branch: master
 #after_deploy:
 #    - "curl \"http://$JENKINS_SRV/job/pipeline-wdl-builder-$TRAVIS_BRANCH/build?token=$JENKINS_SECRET_TOKEN\""
-#after_script: gulp integration_test
+#after_script: gulp gulp integrations_test
