@@ -18,9 +18,9 @@ dist: trusty
 install: 
     - yarn global add gulp-cli
     - yarn install
-script: gulp
-after_script: gulp integration_test 
-#gulp test:coveralls
+script: gulp integration_test
+#gulp
+#after_script: gulp test:coveralls
 #before_deploy:
 #    - |-
 #          if [[ $TRAVIS_BRANCH == "dev" ]]; then
