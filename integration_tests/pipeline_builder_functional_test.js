@@ -60,12 +60,12 @@ test.describe('Pipelin Builder JS functional test', function () {
 
   const PB_APP_URL = 'http://pb.opensource.epam.com:10000/';
   const REFERENCE_TMP_PNG = 'buffer.png';
-  const REFERENCE_TMP_SVG = 'buffer.png';
+  const REFERENCE_TMP_SVG = 'buffer.svg';
   const CASES_PATH = './integration_tests/cases/';
-  var contents = fs.readFileSync(path.resolve(path.join(CASES_PATH + 'test_cases.json')));
+  var contents = fs.readFileSync(path.resolve(path.join(CASES_PATH + 'test-cases.json')));
   var test_cases = JSON.parse(contents);
-  
-  test_cases.forEach(function(test_case) {
+
+  test_cases.cases.forEach(function(test_case) {
 
     test.it(test_case.name, function () {
       driver.get(PB_APP_URL + '?url=' + test_case.wdl_url);
@@ -77,7 +77,7 @@ test.describe('Pipelin Builder JS functional test', function () {
         fs.writeFileSync(REFERENCE_TMP_PNG, f);
         fs.unlinkSync(REFERENCE_TMP_SVG);
         var golden = fs.readFileSync(REFERENCE_TMP_PNG);
-        var screenshot = fs.readFileSync(path.join(CASES_PATH, reference_img));
+        var screenshot = fs.readFileSync(path.join(CASES_PATH, test_case.reference_img));
         var d = doneReading(golden, screenshot);
         fs.unlinkSync(REFERENCE_TMP_PNG);
         assert.equal(d <= 10, true, 'image is the same ' + d);
