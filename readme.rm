@@ -1,0 +1,8 @@
+##Steps to build and run
+cp <repodir>/dist <repodir>/docker/dist
+docker build -t pipeline docker
+docker run -p 3000:80 --name pipeline -d pipeline
+
+##Command changing the tools.json file
+docker cp tools/tools.json pipeline:/usr/share/nginx/html/tools/tools.json
+

@@ -58,29 +58,35 @@ test.describe('Pipelin Builder JS functional test', function () {
     return diff;
   }
 
-  const PB_APP_URL = 'http://pb.opensource.epam.com:10000/';
+  const PB_APP_URL = 'http://ip:8081/';
   const REFERENCE_TMP_PNG = 'buffer.png';
   const REFERENCE_TMP_SVG = 'buffer.svg';
+  const WDL_SCRIPT = 'test.wdl';
   const CASES_PATH = './integration_tests/cases/';
   var contents = fs.readFileSync(path.resolve(path.join(CASES_PATH + 'test-cases.json')));
   var test_cases = JSON.parse(contents);
 
-  test_cases.cases.forEach(function(test_case) {
+  test_cases.cases.forEach(function (test_case) {
 
     test.it(test_case.name, function () {
-      driver.get(PB_APP_URL + '?url=' + test_case.wdl_url);
-      driver.wait(until.elementLocated(webdriver.By.xpath('//*[@id="wdl"]')), 10000, 'Page wasn\'t loaded in time');
-      driver.wait(until.elementLocated(webdriver.By.xpath('//*[@class="build-ok"]')), 10000, 'Build failure');
-      driver.executeScript('var svg = document.querySelector("svg").parentNode.innerHTML; return svg;').then(function (return_value) {
-        fs.writeFileSync(REFERENCE_TMP_SVG, return_value);
-        var f = svg2png.sync(fs.readFileSync(REFERENCE_TMP_SVG));
-        fs.writeFileSync(REFERENCE_TMP_PNG, f);
-        fs.unlinkSync(REFERENCE_TMP_SVG);
-        var golden = fs.readFileSync(REFERENCE_TMP_PNG);
-        var screenshot = fs.readFileSync(path.join(CASES_PATH, test_case.reference_img));
-        var d = doneReading(golden, screenshot);
-        fs.unlinkSync(REFERENCE_TMP_PNG);
-        assert.equal(d <= 10, true, 'image is the same ' + d);
+      driver.get(PB_APP_URL);
+      request(test_case.wdl_url).pipe(fs.createWriteStream(WDL_SCRIPT));
+      wdl_cont = fs.readFileSync(WDL_SCRIPT);
+      driver.wait(until.elementLocated(webdriver.By.xpath('//*[@id="btn-build"]')), 10000, 'Page wasn\'t loaded in time');
+      driver.executeScript("document.getElementById('txt-script').value = '" +
+        wdl_cont + "';").then(function () {
+        driver.findElement(webdriver.By.xpath('//*[@id="btn-build"]')).click();
+        driver.executeScript('var svg = document.querySelector("svg").parentNode.innerHTML; return svg;').then(function (return_value) {
+          fs.writeFileSync(REFERENCE_TMP_SVG, return_value);
+          var f = svg2png.sync(fs.readFileSync(REFERENCE_TMP_SVG));
+          fs.writeFileSync(REFERENCE_TMP_PNG, f);
+          fs.unlinkSync(REFERENCE_TMP_SVG);
+          var golden = fs.readFileSync(REFERENCE_TMP_PNG);
+          var screenshot = fs.readFileSync(path.join(CASES_PATH, test_case.reference_img));
+          var d = doneReading(golden, screenshot);
+          fs.unlinkSync(REFERENCE_TMP_PNG);
+          assert.equal(d <= 10, true, 'image is the same ' + d);
+        });
       });
     });
   });

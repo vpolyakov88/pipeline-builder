@@ -4,6 +4,8 @@ language: node_js
 node_js: "6"
 os: linux
 dist: trusty
+services:
+  - docker
 #before_install: 
 #    - |-
 #          CURRENT_VERSION="$(npm version | grep -Po "(?<='$PACKAGE_NAME': ')[^']*")"
@@ -18,9 +20,13 @@ dist: trusty
 install: 
     - yarn global add gulp-cli
     - yarn install
-script: gulp integrations_test
-#gulp
-#after_script: gulp test:coveralls
+script: gulp
+after_script: 
+    - gulp test:coveralls
+after_success:
+    - docker build --build-arg USER_NAME=$SAUCE_USERNAME --build-arg API_KEY=$SAUCE_ACCESS_KEY -t pipelinebuilder-test .
+	- docker run -p 8081:80 -d pipelinebuilder-test
+    - gulp integrations_test
 #before_deploy:
 #    - |-
 #          if [[ $TRAVIS_BRANCH == "dev" ]]; then
