@@ -4,6 +4,10 @@ language: node_js
 node_js: "6"
 os: linux
 dist: trusty
+addons:
+  sauce_connect:
+    username: $SAUCE_USERNAME
+    access_key: $SAUCE_ACCESS_KEY
 services:
   - docker
 #before_install: 
@@ -24,8 +28,9 @@ script: gulp
 after_script: 
     - gulp test:coveralls
 after_success:
-    - docker build --build-arg USER_NAME=$SAUCE_USERNAME --build-arg API_KEY=$SAUCE_ACCESS_KEY -t pipelinebuilder-test .
-	- docker run -p 8081:80 -d pipelinebuilder-test
+    - gulp deploy
+    - docker build -t pipelinebuilder-test . 
+    - docker run -p 8081:80 -d pipelinebuilder-test
     - gulp integrations_test
 #before_deploy:
 #    - |-

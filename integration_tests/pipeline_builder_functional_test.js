@@ -6,7 +6,7 @@ const assert = require('assert'),
   SauceLabs = require('saucelabs'),
   fs = require('fs'),
   svg2png = require('svg2png'),
-  path = require('path'),
+  path = require('path');
   username = process.env.SAUCE_USERNAME,
   accessKey = process.env.SAUCE_ACCESS_KEY,
   saucelabs = new SauceLabs({
@@ -24,6 +24,7 @@ test.describe('Pipelin Builder JS functional test', function () {
       version = '43.0',
       platform = 'Windows 7',
       screenResolution = '1920x1080',
+      tunnel_identifier = process.env.TRAVIS_JOB_NUMBER,
       server = "http://" + username + ":" + accessKey +
         "@ondemand.saucelabs.com:80/wd/hub";
 
@@ -34,7 +35,8 @@ test.describe('Pipelin Builder JS functional test', function () {
       'platform': platform,
       'version': version,
       'username': username,
-      'accessKey': accessKey
+      'accessKey': accessKey,
+      'tunnel-identifier': tunnel_identifier
     }).usingServer(server).build();
     driver.getSession().then(function (sessionid) {
       driver.sessionID = sessionid.id_;
@@ -58,7 +60,7 @@ test.describe('Pipelin Builder JS functional test', function () {
     return diff;
   }
 
-  const PB_APP_URL = 'http://ip:8081/';
+  const PB_APP_URL = 'http://172.22.3.10:8081/';
   const REFERENCE_TMP_PNG = 'buffer.png';
   const REFERENCE_TMP_SVG = 'buffer.svg';
   const WDL_SCRIPT = 'test.wdl';
@@ -71,6 +73,7 @@ test.describe('Pipelin Builder JS functional test', function () {
     test.it(test_case.name, function () {
       driver.get(PB_APP_URL);
       request(test_case.wdl_url).pipe(fs.createWriteStream(WDL_SCRIPT));
+      console.log(wdl_cont);
       wdl_cont = fs.readFileSync(WDL_SCRIPT);
       driver.wait(until.elementLocated(webdriver.By.xpath('//*[@id="btn-build"]')), 10000, 'Page wasn\'t loaded in time');
       driver.executeScript("document.getElementById('txt-script').value = '" +
