@@ -21,7 +21,6 @@ install:
 script: gulp
 after_script: 
     - gulp test:coveralls
-after_success:
     - gulp deploy
     - docker build -t pipelinebuilder-test . 
     - docker run -p 8081:80 -d pipelinebuilder-test
