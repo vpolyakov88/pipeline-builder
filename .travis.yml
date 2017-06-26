@@ -2,6 +2,7 @@ env:
     - EMAIL="aleksandr_sidoruk@epam.com" PACKAGE_NAME="pipeline-builder"
 language: node_js
 node_js: "6"
+sudo: required
 os: linux
 dist: trusty
 addons:
