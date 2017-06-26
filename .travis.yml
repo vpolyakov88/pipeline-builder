@@ -5,9 +5,7 @@ node_js: "6"
 os: linux
 dist: trusty
 addons:
-  sauce_connect:
-    username: $SAUCE_USERNAME
-    access_key: $SAUCE_ACCESS_KEY
+  sauce_connect: true
 services:
   - docker
 #before_install: 
