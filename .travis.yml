@@ -18,7 +18,7 @@ services:
 #    - yarn global add gulp-cli
 #    - yarn install
 script:     
-    - wget https://saucelabs.com/downloads/sc-4.4.7-linux.tar.gz -O - | tar -xz && ./sc-4.4.7-linux/bin/sc --user=u-pupkin --api-key=3117e6a8-28b8-4c0f-93b4-2eef556102f7
+    - wget https://saucelabs.com/downloads/sc-4.4.7-linux.tar.gz -O - | tar -xz && ./sc-4.4.7-linux/bin/sc --user=u-pupkin --api-key=3117e6a8-28b8-4c0f-93b4-2eef556102f7 > log.log &
     - curl -u u-pupkin:3117e6a8-28b8-4c0f-93b4-2eef556102f7 https://saucelabs.com/rest/v1/u-pupkin/tunnels
 #gulp
 #after_script: 
