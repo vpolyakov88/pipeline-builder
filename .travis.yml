@@ -18,7 +18,7 @@ install:
     - yarn global add gulp-cli
     - yarn install
 script: 
-     - gulp
+    - gulp
     - gulp test:coveralls
     - gulp deploy
 #    - wget https://saucelabs.com/downloads/sc-4.4.7-linux.tar.gz -O - | tar -xz && cd ./sc-4.4.7-linux/bin
