@@ -1,5 +1,4 @@
 const assert = require('assert'),
-  sauceConnectLauncher = require('sauce-connect-launcher'),
   test = require('selenium-webdriver/testing'),
   webdriver = require('selenium-webdriver'),
   pixelmatch = require('pixelmatch'),
@@ -8,38 +7,38 @@ const assert = require('assert'),
   fs = require('fs'),
   svg2png = require('svg2png'),
   path = require('path'),
+  request = require('sync-request'),
+  sauceConnectLauncher = require('sauce-connect-launcher'),
   username = process.env.SAUCE_USERNAME,
-  accessKey = process.env.SAUCE_ACCESS_KEY,
-  saucelabs = new SauceLabs({
-    username: username,
-    password: accessKey,
+  accessKey = process.env.SAUCE_ACCESS_KEY;
+
+
+function getTunnels() {
+  var res = request('GET', 'https://saucelabs.com/rest/v1/'+username+'/tunnels', {
+    headers: {
+      authorization: 'Basic ' + new Buffer(username + ':' + accessKey).toString("base64")
+    },
   });
+  return res.getBody().toString('utf8').slice(2).slice(0, -2);
+}
 
 test.describe('Pipelin Builder JS functional test', function () {
-  this.timeout(9999999);
-
-  test.before(function(done) {
+  this.timeout(600000);
+  var driver;
+  test.before(function (done) {
     sauceConnectLauncher({
       username: username,
       accessKey: accessKey,
-    }, function (err) {
-      if (err) {
-        console.error(err.message);
-      }
-     console.log("Sauce Connect ready");
     }, done);
   });
 
-  // sauceConnectLauncher.sauceConnectProcess.close(function () {
-  //   console.log("Closed Sauce Connect process");
-  // });
-
-
-  var driver;
 
   test.beforeEach(function () {
-    saucelabs.getTunnel(sauceConnectLauncher.sauceConnectProcess.tunnelId);
-    console.log(sauceConnectLauncher.sauceConnectProcess.tunnelId);
+    var saucelabs = new SauceLabs({
+      username: username,
+      password: accessKey,
+      tunnelIdentifier: getTunnels(),
+    });
     var browser = 'chrome',
       version = '43.0',
       platform = 'Windows 7',
@@ -47,19 +46,17 @@ test.describe('Pipelin Builder JS functional test', function () {
       server = "http://" + username + ":" + accessKey +
         "@ondemand.saucelabs.com:80/wd/hub";
 
-
     driver = new webdriver.Builder().withCapabilities({
       'browserName': browser,
       'screenResolution': screenResolution,
       'platform': platform,
       'version': version,
       'username': username,
-      'accessKey': accessKey
+      'accessKey': accessKey,
     }).usingServer(server).build();
     driver.getSession().then(function (sessionid) {
       driver.sessionID = sessionid.id_;
     });
-
   });
 
   test.afterEach(function (done) {
@@ -69,23 +66,22 @@ test.describe('Pipelin Builder JS functional test', function () {
     saucelabs.updateJob(driver.sessionID, {
       name: title,
       passed: passed,
-      build: 'Build #' + process.env.TRAVIS_BUILD_NUMBER + ', ' + process.env.TRAVIS_COMMIT_MESSAGE
+      build: 'Build #' + process.env.TRAVIS_BUILD_NUMBER + ', ' + process.env.TRAVIS_COMMIT_MESSAGE,
     }, done);
   });
-
- //  test.after(function(done) {
- //    sauceConnectLauncher({
- //      sauceConnectProcess.close(function () {
- //      console.log("Closed Sauce Connect process")});
- // }, done);
- //  });
 
   function doneReading(golden, screenshot) {
     var diff = pixelmatch(golden, screenshot, diff, 1920, 899);
     return diff;
   }
 
-  const PB_APP_URL = 'http://pb.opensource.epam.com/';
+  function getResponse(gitUrl) {
+    var res = request('GET', gitUrl)
+    return res.getBody().toString('utf8');
+  }
+
+
+  const PB_APP_URL = 'http://127.0.0.1:8081/';
   const REFERENCE_TMP_PNG = 'buffer.png';
   const REFERENCE_TMP_SVG = 'buffer.svg';
   const CASES_PATH = './integration_tests/cases/';
@@ -96,10 +92,8 @@ test.describe('Pipelin Builder JS functional test', function () {
 
     test.it(test_case.name, function () {
       driver.get(PB_APP_URL);
-      // request(test_case.wdl_url).pipe(fs.createWriteStream(WDL_SCRIPT));
-      // console.log(wdl_cont);
-      var wdlCont = getResponse(test_case.wdl_url, 'GET');
-      driver.wait(until.elementLocated(webdriver.By.xpath('//*[@id="btn-build"]')), 9999999, 'Page wasn\'t loaded in time');
+      var wdlCont = getResponse(test_case.wdl_url);
+      driver.wait(until.elementLocated(webdriver.By.xpath('//*[@id="btn-build"]')), 100000, 'Page wasn\'t loaded in time');
       driver.executeScript("document.getElementById('txt-script').value = '" +
         wdlCont + "';").then(function () {
         driver.findElement(webdriver.By.xpath('//*[@id="btn-build"]')).click();
