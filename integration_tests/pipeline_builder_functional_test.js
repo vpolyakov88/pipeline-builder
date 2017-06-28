@@ -14,7 +14,7 @@ const assert = require('assert'),
 
 
 function getTunnels() {
-  var res = request('GET', 'https://saucelabs.com/rest/v1/'+username+'/tunnels', {
+  var res = request('GET', 'https://saucelabs.com/rest/v1/' + username + '/tunnels', {
     headers: {
       authorization: 'Basic ' + new Buffer(username + ':' + accessKey).toString("base64")
     },
@@ -25,20 +25,20 @@ function getTunnels() {
 test.describe('Pipelin Builder JS functional test', function () {
   this.timeout(600000);
   var driver;
-  test.before(function (done) {
-    sauceConnectLauncher({
-      username: username,
-      accessKey: accessKey,
-    }, done);
+  // test.before(function (done) {
+  //   sauceConnectLauncher({
+  //     username: username,
+  //     accessKey: accessKey,
+  //   }, done);
+  // });
+
+  var saucelabs = new SauceLabs({
+    username: username,
+    password: accessKey,
+    tunnelIdentifier: getTunnels(),
   });
 
-
   test.beforeEach(function () {
-    var saucelabs = new SauceLabs({
-      username: username,
-      password: accessKey,
-      tunnelIdentifier: getTunnels(),
-    });
     var browser = 'chrome',
       version = '43.0',
       platform = 'Windows 7',
@@ -77,7 +77,9 @@ test.describe('Pipelin Builder JS functional test', function () {
 
   function getResponse(gitUrl) {
     var res = request('GET', gitUrl)
-    return res.getBody().toString('utf8');
+    var result = '';
+    result = res.getBody().toString('ASCII');
+    return result;
   }
 
 
@@ -86,29 +88,30 @@ test.describe('Pipelin Builder JS functional test', function () {
   const REFERENCE_TMP_SVG = 'buffer.svg';
   const CASES_PATH = './integration_tests/cases/';
   var contents = fs.readFileSync(path.resolve(path.join(CASES_PATH + 'test-cases.json')));
-  var test_cases = JSON.parse(contents);
+  var testCases = JSON.parse(contents);
 
-  test_cases.cases.forEach(function (test_case) {
-
-    test.it(test_case.name, function () {
+  testCases.cases.forEach(function (testCase) {
+    test.it(testCase.name, function () {
       driver.get(PB_APP_URL);
-      var wdlCont = getResponse(test_case.wdl_url);
+      var wdlCont = getResponse(testCase.wdl_url).replace(/\n/g, '\\n').replace(/\"/g, '\\"');
       driver.wait(until.elementLocated(webdriver.By.xpath('//*[@id="btn-build"]')), 100000, 'Page wasn\'t loaded in time');
-      driver.executeScript("document.getElementById('txt-script').value = '" +
-        wdlCont + "';").then(function () {
-        driver.findElement(webdriver.By.xpath('//*[@id="btn-build"]')).click();
-        driver.executeScript('var svg = document.querySelector("svg").parentNode.innerHTML; return svg;').then(function (return_value) {
-          fs.writeFileSync(REFERENCE_TMP_SVG, return_value);
-          var f = svg2png.sync(fs.readFileSync(REFERENCE_TMP_SVG));
-          fs.writeFileSync(REFERENCE_TMP_PNG, f);
-          fs.unlinkSync(REFERENCE_TMP_SVG);
-          var golden = fs.readFileSync(REFERENCE_TMP_PNG);
-          var screenshot = fs.readFileSync(path.join(CASES_PATH, test_case.reference_img));
-          var d = doneReading(golden, screenshot);
-          fs.unlinkSync(REFERENCE_TMP_PNG);
-          assert.equal(d <= 10, true, 'image is the same ' + d);
+      driver.executeScript('document.getElementById("txt-script").value = "' +
+        wdlCont + '";').then(_ => {
+          driver.findElement(webdriver.By.xpath('//*[@id="btn-build"]')).click();
+          setTimeout(_ => {
+            driver.executeScript('var svg = document.querySelector("svg").parentNode.innerHTML; return svg;').then(function (return_value) {
+              fs.writeFileSync(REFERENCE_TMP_SVG, return_value);
+              var f = svg2png.sync(fs.readFileSync(REFERENCE_TMP_SVG));
+              fs.writeFileSync(REFERENCE_TMP_PNG, f);
+              fs.unlinkSync(REFERENCE_TMP_SVG);
+              var golden = fs.readFileSync(REFERENCE_TMP_PNG);
+              var screenshot = fs.readFileSync(path.join(CASES_PATH, test_case.reference_img));
+              var d = doneReading(golden, screenshot);
+              fs.unlinkSync(REFERENCE_TMP_PNG);
+              assert.equal(d <= 10, true, 'image is the same ' + d);
+            });
+          }, 10000);
         });
-      });
     });
   });
 });
