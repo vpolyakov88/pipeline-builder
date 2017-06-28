@@ -8,7 +8,6 @@ const assert = require('assert'),
   svg2png = require('svg2png'),
   path = require('path'),
   request = require('sync-request'),
-  sauceConnectLauncher = require('sauce-connect-launcher'),
   username = process.env.SAUCE_USERNAME,
   accessKey = process.env.SAUCE_ACCESS_KEY;
 
@@ -25,13 +24,6 @@ function getTunnels() {
 test.describe('Pipelin Builder JS functional test', function () {
   this.timeout(600000);
   var driver;
-  // test.before(function (done) {
-  //   sauceConnectLauncher({
-  //     username: username,
-  //     accessKey: accessKey,
-  //   }, done);
-  // });
-
   var saucelabs = new SauceLabs({
     username: username,
     password: accessKey,
