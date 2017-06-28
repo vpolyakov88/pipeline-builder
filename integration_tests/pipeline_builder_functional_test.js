@@ -88,22 +88,24 @@ test.describe('Pipelin Builder JS functional test', function () {
       var wdlCont = getResponse(testCase.wdl_url).replace(/\n/g, '\\n').replace(/\"/g, '\\"');
       driver.wait(until.elementLocated(webdriver.By.xpath('//*[@id="btn-build"]')), 100000, 'Page wasn\'t loaded in time');
       driver.executeScript('document.getElementById("txt-script").value = "' +
-        wdlCont + '";').then(_ => {
-          driver.findElement(webdriver.By.xpath('//*[@id="btn-build"]')).click();
-          setTimeout(_ => {
-            driver.executeScript('var svg = document.querySelector("svg").parentNode.innerHTML; return svg;').then(function (return_value) {
-              fs.writeFileSync(REFERENCE_TMP_SVG, return_value);
-              var f = svg2png.sync(fs.readFileSync(REFERENCE_TMP_SVG));
-              fs.writeFileSync(REFERENCE_TMP_PNG, f);
-              fs.unlinkSync(REFERENCE_TMP_SVG);
-              var golden = fs.readFileSync(REFERENCE_TMP_PNG);
-              var screenshot = fs.readFileSync(path.join(CASES_PATH, test_case.reference_img));
-              var d = doneReading(golden, screenshot);
-              fs.unlinkSync(REFERENCE_TMP_PNG);
-              assert.equal(d <= 10, true, 'image is the same ' + d);
-            });
-          }, 10000);
-        });
+        wdlCont + '";');
+      setTimeout(function () {
+      }, 2000);
+      driver.findElement(webdriver.By.xpath('//*[@id="btn-build"]')).click();
+      setTimeout(function () {
+      }, 2000);
+      driver.executeScript('var svg = document.querySelector("svg").parentNode.innerHTML; return svg;').then(function (return_value) {
+        fs.writeFileSync(REFERENCE_TMP_SVG, return_value);
+        var f = svg2png.sync(fs.readFileSync(REFERENCE_TMP_SVG));
+        console.log(f.toString("Base64"));
+        fs.writeFileSync(REFERENCE_TMP_PNG, f);
+        fs.unlinkSync(REFERENCE_TMP_SVG);
+        var screenshot = fs.readFileSync(REFERENCE_TMP_PNG);
+        var golden = fs.readFileSync(path.join(CASES_PATH, testCase.reference_img));
+        var d = doneReading(golden, screenshot);
+        fs.unlinkSync(REFERENCE_TMP_PNG);
+        assert.equal(d <= 10, true, 'image is the same ' + d);
+      });
     });
   });
 });
