@@ -1,6 +1,9 @@
+env:
+    - EMAIL="aleksandr_sidoruk@epam.com" PACKAGE_NAME="pipeline-builder"
 language: node_js
 node_js: "6"
 os: linux
+dist: trusty
 services:
   - docker
 #before_install: 
@@ -18,9 +21,9 @@ install:
     - yarn global add gulp-cli
     - yarn install
     - wget https://saucelabs.com/downloads/sc-4.4.7-linux.tar.gz -O - | tar -xz
-script:
+script:gulp
+after_script:
     - nohup ./sc-4.4.7-linux/bin/sc --user=$SAUCE_USERNAME --api-key=$SAUCE_ACCESS_KEY &
-    - gulp
     - gulp test:coveralls
     - gulp deploy
     - docker build -t pipelinebuilder-test . 
