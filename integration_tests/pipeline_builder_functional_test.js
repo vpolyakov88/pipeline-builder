@@ -97,7 +97,7 @@ test.describe('Pipelin Builder JS functional test', function () {
       driver.executeScript('var svg = document.querySelector("svg").parentNode.innerHTML; return svg;').then(function (return_value) {
         fs.writeFileSync(REFERENCE_TMP_SVG, return_value);
         var f = svg2png.sync(fs.readFileSync(REFERENCE_TMP_SVG));
-        console.log(f.toString("Base64"));
+        console.log(f);
         fs.writeFileSync(REFERENCE_TMP_PNG, f);
         fs.unlinkSync(REFERENCE_TMP_SVG);
         var screenshot = fs.readFileSync(REFERENCE_TMP_PNG);
