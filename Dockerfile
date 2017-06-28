@@ -16,6 +16,4 @@ COPY src/index.html /usr/share/nginx/html/index.html
 COPY src/pipeline.scss /usr/share/nginx/html/pipeline.scss
 COPY src/app.js /usr/share/nginx/html/app.js
 
-RUN wget https://saucelabs.com/downloads/sc-4.4.7-linux.tar.gz -O - | tar -xz
-RUN nohup /sc-4.4.7-linux/bin/sc --user=u-pupkin --api-key=3117e6a8-28b8-4c0f-93b4-2eef556102f7 &
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
