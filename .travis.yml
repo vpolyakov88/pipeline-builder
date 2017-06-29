@@ -20,15 +20,14 @@ services:
 install: 
     - yarn global add gulp-cli
     - yarn install
-    - wget https://saucelabs.com/downloads/sc-4.4.7-linux.tar.gz -O - | tar -xz
 script: gulp
 after_script: 
-    - nohup ./sc-4.4.7-linux/bin/sc --user=$SAUCE_USERNAME --api-key=$SAUCE_ACCESS_KEY &
     - gulp test:coveralls
     - gulp deploy
-    - docker build -t pipelinebuilder-test . 
-    - docker run -p 8081:80 -d pipelinebuilder-test
-#    - gulp integrations_test    
+    - docker build -t pipelinebuilder-test .
+    - docker run -p 8081:80 -d -e USER_NAME=$SAUCE_USERNAME -e API_KEY=SAUCE_ACCESS_KEY pipelinebuilder-test
+    - sleep 15
+    - gulp integrations_test    
 #before_deploy:
 #    - |-
 #          if [[ $TRAVIS_BRANCH == "dev" ]]; then
