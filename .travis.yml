@@ -4,6 +4,7 @@ language: node_js
 node_js: "6"
 os: linux
 dist: trusty
+sudo: required
 services:
   - docker
 #before_install: 
@@ -26,8 +27,7 @@ after_script:
     - gulp deploy
     - docker build -t pipelinebuilder-test .
     - docker run -p 8081:80 -d -e USER_NAME=$SAUCE_USERNAME -e API_KEY=$SAUCE_ACCESS_KEY pipelinebuilder-test
-    - ./integration_tests/tunnel_wait.sh $SAUCE_USERNAME $SAUCE_ACCESS_KEY
-    - sleep 15
+    - sudo chmod a+x ./integration_tests/tunnel_wait.sh && ./integration_tests/tunnel_wait.sh $SAUCE_USERNAME $SAUCE_ACCESS_KEY
     - gulp integrations_test    
 #before_deploy:
 #    - |-
