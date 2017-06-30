@@ -75,7 +75,7 @@ test.describe('Pipelin Builder JS functional test', function () {
   }
 
 
-  const PB_APP_URL = 'http://127.0.0.1:8081/';
+  const PB_APP_URL = 'http://172.17.0.2/';
   const REFERENCE_TMP_PNG = 'buffer.png';
   const REFERENCE_TMP_SVG = 'buffer.svg';
   const CASES_PATH = './integration_tests/cases/';
