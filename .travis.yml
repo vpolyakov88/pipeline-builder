@@ -25,7 +25,8 @@ after_script:
     - gulp test:coveralls
     - gulp deploy
     - docker build -t pipelinebuilder-test .
-    - docker run -p 54.87.185.35:8081:80 -d -e USER_NAME=$SAUCE_USERNAME -e API_KEY=$SAUCE_ACCESS_KEY pipelinebuilder-test
+    - CID=$(docker run -p 8081:80 -d -e USER_NAME=$SAUCE_USERNAME -e API_KEY=$SAUCE_ACCESS_KEY pipelinebuilder-test)
+    - docker inspect $CID
     - sleep 15
     - gulp integrations_test    
 #before_deploy:
