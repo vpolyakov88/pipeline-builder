@@ -24,10 +24,10 @@ install:
 script: gulp
 after_script: 
     - gulp test:coveralls
-    - gulp deploy
+    - gulp build:demo
     - docker build -t pipelinebuilder-test .
     - docker run -p 8081:80 -d -e USER_NAME=$SAUCE_USERNAME -e API_KEY=$SAUCE_ACCESS_KEY pipelinebuilder-test
-    - sudo chmod a+x ./integration_tests/tunnel_wait.sh && ./integration_tests/tunnel_wait.sh $SAUCE_USERNAME $SAUCE_ACCESS_KEY
+    - ./integration_tests/tunnel_wait.sh $SAUCE_USERNAME $SAUCE_ACCESS_KEY
     - gulp integrations_test    
 #before_deploy:
 #    - |-
