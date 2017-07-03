@@ -11,7 +11,7 @@ RUN apt-get update -qqy \
 
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
 COPY nginx/default.conf /etc/nginx/conf.d/default.conf
-COPY dist /usr/share/nginx/html/demo.bundle.js
+COPY dist/demo.bundle.js /usr/share/nginx/html/demo.bundle.js
 COPY src/index.html /usr/share/nginx/html/index.html
 
 COPY nginx/scrun.sh /
