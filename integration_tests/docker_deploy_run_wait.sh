@@ -1,4 +1,6 @@
 #!/bin/bash
+docker build -t pipelinebuilder-test .
+docker run -p 8081:80 -d -e USER_NAME=$1 -e API_KEY=$2 pipelinebuilder-test
 response=[]
 val="\"status\": \"running\""
 while [[ $response != *$val* ]]; do

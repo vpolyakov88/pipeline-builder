@@ -25,6 +25,7 @@ script: gulp
 after_script: 
     - gulp test:coveralls
     - gulp build:demo
+    - ./integration_tests/tunnel_wait.sh $SAUCE_USERNAME $SAUCE_ACCESS_KEY
     - gulp integrations_test    
 #before_deploy:
 #    - |-
