@@ -13,12 +13,16 @@ const assert = require('assert'),
 
 
 function getTunnels() {
-  var res = request('GET', 'https://saucelabs.com/rest/v1/' + username + '/tunnels', {
-    headers: {
-      authorization: 'Basic ' + new Buffer(username + ':' + accessKey).toString("base64")
-    },
-  });
-  return res.getBody().toString('utf8').slice(2).slice(0, -2);
+  var tunnelId = '[]';
+  while (tunnelId === '[]') {
+    var res = request('GET', 'https://saucelabs.com/rest/v1/' + username + '/tunnels', {
+      headers: {
+        authorization: 'Basic ' + new Buffer(username + ':' + accessKey).toString("base64")
+      },
+    });
+    tunnelId = res.getBody().toString('utf8');
+  }
+  return tunnelId.slice(2).slice(0, -2);
 }
 
 test.describe('Pipelin Builder JS functional test', function () {

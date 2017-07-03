@@ -97,8 +97,7 @@ gulp.task('test:coveralls', () =>
 
 gulp.task('integrations_test', () =>
   gulp.execCommand('docker build -t pipelinebuilder-test .')
-     .pipe(gulp.execCommand('docker run -p 8081:80 -d -e USER_NAME='+process.env.SAUCE_USERNAME+' -e API_KEY='+process.env.SAUCE_ACCESS_KEY+' pipelinebuilder-test'))
-     .pipe(gulp.execCommand('integration_tests/tunnel_wait.sh '+process.env.SAUCE_USERNAME+' '+process.env.SAUCE_ACCESS_KEY))
+     .pipe(gulp.execCommand('docker run -p 8081:80 -d -e USER_NAME=', process.env.SAUCE_USERNAME, ' -e API_KEY=', process.env.SAUCE_ACCESS_KEY, ' pipelinebuilder-test'))
     .pipe(gulp.src('integration_tests/pipeline_builder_functional_test.js', { read: false }))
     .pipe(mocha({ compilers: 'gulp-mocha' }))
     .pipe(istanbul.writeReports()),
